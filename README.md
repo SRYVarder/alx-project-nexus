@@ -197,20 +197,22 @@ Deployment	Docker + Render
 
 #### Movies
 
-Method	Endpoint	Description
-GET	/api/movies/trending/	Get trending movies
-GET	/api/movies/recommended/	Get recommended movies
-GET	/api/movies/search/?query=name	Search movies
+Method	     Endpoint	                        Description
+- GET	       /api/movies/trending/	          Get trending movies
+  
+- GET	       /api/movies/recommended/	        Get recommended movies
+  
+- GET	       /api/movies/search/?query=name	  Search movies
 
 #### Authentication
 
-Method	Endpoint	Description
-POST	/api/auth/register/	Register user
-POST	/api/auth/login/	Login & get JWT
+Method	      Endpoint	                   Description
+- POST	      /api/auth/register/	         Register user
+- POST	      /api/auth/login/	           Login & get JWT
 
 #### Favorites
 
-Method	Endpoint	Description
-POST	/api/users/favorites/	Add movie to favorites
-GET	/api/users/favorites/	Get favorite movies
-DELETE	/api/users/favorites/{id}/	Remove favorite
+Method	      Endpoint	                   Description
+- POST	      /api/users/favorites/       	Add movie to favorites
+- GET	        /api/users/favorites/	        Get favorite movies
+- DELETE	    /api/users/favorites/{id}/	  Remove favorite
