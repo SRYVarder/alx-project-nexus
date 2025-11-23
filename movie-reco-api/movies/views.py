@@ -17,7 +17,7 @@ class SearchMoviesView(APIView):
     def get(self, request):
         query = request.query_params.get('query', '')
         if not query:
-            return Response({"error": "Query parameter is required."}, status=400)
+            return Response({"error": "Query parameter is required.", "example": "/api/movies/search/?query=the godfather"}, status=400)
         data = search_movie(query)
         return Response(data)
     

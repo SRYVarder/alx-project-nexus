@@ -8,4 +8,4 @@ celery==5.4.0
 redis==5.0.8
 requests==2.31.0
 python-decouple==3.7
-drf-yasg==1.21.6
+drf-yasg==1.21.11
