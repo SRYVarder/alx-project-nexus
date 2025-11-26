@@ -9,7 +9,7 @@ class MovieSerializer(serializers.Serializer):
     poster_path = serializers.CharField(max_length=200, allow_null=True)
     vote_average = serializers.FloatField()
 
-class FavouriteMovieSerializer(serializers.Serializer):
+class FavoriteMovieSerializer(serializers.Serializer):
     id = serializers.IntegerField()
     tmdb_id = serializers.IntegerField()
     title = serializers.CharField(max_length=200)

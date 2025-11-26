@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 
 user = get_user_model()
 
-class FavouriteMovie(models.Model):
+class FavoriteMovie(models.Model):
     user = models.ForeignKey(user, on_delete=models.CASCADE, related_name='favourites')
     tmdb_id = models.IntegerField()
     title = models.CharField(max_length=200)

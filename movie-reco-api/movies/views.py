@@ -4,8 +4,8 @@ from rest_framework.response import Response
 from rest_framework import status, permissions
 from .caching import get_cached_trending
 from .external_api import search_movie
-from .serializers import MovieSerializer, FavouriteMovieSerializer
-from .models import FavouriteMovie
+from .serializers import MovieSerializer, FavoriteMovieSerializer
+from .models import FavoriteMovie
 
 class TrendingMoviesView(APIView):
     def get(self, request):

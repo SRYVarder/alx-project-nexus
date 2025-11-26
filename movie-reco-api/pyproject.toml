@@ -1,0 +1,6 @@
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "movie_api.settings"
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
+addopts = "--tb=short -ra"
+testpaths = ["movies", "users"]
+django_debug_mode = true

@@ -87,7 +87,7 @@ DATABASES = {
         'NAME': config('POSTGRES_DB', default='moviedb'),
         'USER': config('POSTGRES_USER', default='postgres'),
         'PASSWORD': config('POSTGRES_PASSWORD', default='admin'),
-        'HOST': config('POSTGRES_HOST', default='localhost'),
+        'HOST': config('POSTGRES_HOST', default='db'),
         'PORT': config('POSTGRES_PORT', default='5432'),
     }
 }
@@ -154,7 +154,7 @@ SIMPLE_JWT = {
 }
 
 #celery configurations
-CELERY_BROKER_URL = config('CELERY_BROKER_URL', default='amqp://guest:guest@localhost:5672//')
+CELERY_BROKER_URL = config('CELERY_BROKER_URL', default='amqp://guest:guest@rabbitmq:5672//')
 CELERY_RESULT_BACKEND = config('CELERY_RESULT_BACKEND', default='redis://localhost:6379/0')
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_ACCEPT_CONTENT = ['json']
@@ -183,3 +183,6 @@ CELERY_BEAT_SCHEDULE = {
     },
 }
 
+
+# Swagger settings
+SWAGGER_USE_COMPAT_RENDERERS = False

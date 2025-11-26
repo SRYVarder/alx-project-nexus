@@ -1,0 +1,12 @@
+# docker-compose.override.yml (only used in development)
+services:
+  web:
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+
+  celery:
+    command: celery -A movie_api worker -l info --loglevel=info
+
+  celery-beat:
+    command: celery -A movie_api beat -l info
