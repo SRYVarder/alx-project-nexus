@@ -87,7 +87,6 @@ if os.getenv('RENDER'):
     #production environment
     DATABASES = {
         'default': dj_database_url.parse('DATABASE_URL')
-        )
     }
 else:
     #local environment
