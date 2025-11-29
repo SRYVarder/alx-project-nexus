@@ -86,8 +86,7 @@ WSGI_APPLICATION = 'movie_api.wsgi.application'
 if os.getenv('RENDER'):
     #production environment
     DATABASES = {
-        'default': dj_database_url.parse(
-            os.environ.get('DATABASE_URL')
+        'default': dj_database_url.parse('DATABASE_URL')
         )
     }
 else:
@@ -102,6 +101,7 @@ else:
         'PORT': config('POSTGRES_PORT', default='5432'),
     }
 }
+
 
 
 
