@@ -83,14 +83,8 @@ WSGI_APPLICATION = 'movie_api.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-if os.getenv('RENDER'):
-    #production environment
-    DATABASES = {
-        'default': dj_database_url.parse('DATABASE_URL')
-    }
-else:
-    #local environment
-    DATABASES = {
+
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': config('POSTGRES_DB', default='moviedb'),
