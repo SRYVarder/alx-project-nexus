@@ -10,11 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
+import dj_database_url
 from pathlib import Path
 from decouple import config
 from datetime import timedelta
 from urllib.parse import urlparse
 from django.conf import settings
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -81,8 +83,16 @@ WSGI_APPLICATION = 'movie_api.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-DATABASES = {
+if os.getenv('RENDER'):
+    #production environment
+    DATABASES = {
+        'default': dj_database_url.parse(
+            os.environ.get('DATABASE_URL')
+        )
+    }
+else:
+    #local environment
+    DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': config('POSTGRES_DB', default='moviedb'),
@@ -92,6 +102,7 @@ DATABASES = {
         'PORT': config('POSTGRES_PORT', default='5432'),
     }
 }
+
 
 
 # Password validation
