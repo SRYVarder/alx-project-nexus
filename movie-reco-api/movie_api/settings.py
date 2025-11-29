@@ -13,6 +13,8 @@ import os
 from pathlib import Path
 from decouple import config
 from datetime import timedelta
+from urllib.parse import urlparse
+from django.conf import settings
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,7 +46,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'movies',
     'users',    
-
 ]
 
 MIDDLEWARE = [
@@ -153,9 +154,36 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
 }
 
+
+#Redis configuration
+if os.getenv('RENDER') or os.getenv('REDIS_URL'):
+    #production environment
+    redis_url = os.getenv('REDIS_URL')
+
+else:
+    #local environment
+    redis_url = 'redis://localhost:6379/1'
+
+result = urlparse(redis_url)
+
+REDIS_HOST = result.hostname
+REDIS_PORT = result.port
+REDIS_PASSWORD = result.password
+REDIS_DB = 0
+
+
 #celery configurations
-CELERY_BROKER_URL = config('CELERY_BROKER_URL', default='amqp://guest:guest@rabbitmq:5672//')
-CELERY_RESULT_BACKEND = config('CELERY_RESULT_BACKEND', default='redis://localhost:6379/0')
+if os.getenv('RENDER'):
+    #production environment
+    CELERY_BROKER_URL = redis_url
+    CELERY_RESULT_BACKEND = redis_url
+
+else:
+    #local environment
+    CELERY_BROKER_URL = config('CELERY_BROKER_URL', default='amqp://guest:guest@localhost:5672//')
+    CELERY_RESULT_BACKEND = config('CELERY_RESULT_BACKEND', default='redis://localhost:6379/0')
+
+
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_RESULT_SERIALIZER = 'json'
